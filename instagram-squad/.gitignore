@@ -20,3 +20,7 @@ _opensquad/_investigations/*
 # Saída gerada por execuções do squad (mantém apenas o marcador de diretório)
 squads/*/output/*
 !squads/*/output/.gitkeep
+
+# Estado de execução do dashboard (efêmero por design: o Pipeline Runner o apaga
+# ao final de cada rodada, ver "Post-Completion Cleanup" em runner.pipeline.md)
+squads/*/state.json
