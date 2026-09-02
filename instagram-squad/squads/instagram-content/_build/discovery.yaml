@@ -1,0 +1,32 @@
+squad_code: "instagram-content"
+purpose: "Gerar conteúdo educativo para o Instagram (Feed, Reels e Stories) da César Couto Arquitetura, com foco em atrair leads de médio a alto padrão interessados em construir casas usando financiamento imobiliário de lote e construção."
+domain: "content"
+
+company:
+  name: "César Couto Arquitetura (CTO)"
+  tone: "Educativo"
+  products: "Construção via financiamento imobiliário de lote+construção, projetos de arquitetura e interiores, projetos complementares residenciais, avaliação e perícia de imóveis"
+
+language: "Português (Brasil)"
+
+context:
+  audience: "Clientes potenciais (leads) de médio a alto padrão que querem construir a casa própria via financiamento imobiliário de lote e construção"
+  platforms: "Instagram (Feed, Reels e Stories)"
+  tone: "Educativo"
+
+tools_needed:
+  - "web_search"
+  - "web_fetch"
+  - "image-creator"
+  - "template-designer"
+
+investigation:
+  enabled: false
+  # Investigação de perfis de referência (Sherlock) foi pulada nesta rodada: exige
+  # navegador com login persistente em redes sociais, não disponível neste ambiente
+  # de instalação. Pode ser rodada depois com `/opensquad edit instagram-content`.
+
+target_formats:
+  - "instagram-feed"
+  - "instagram-reels"
+  - "instagram-stories"

@@ -1,0 +1,185 @@
+# Design output — squad "instagram-content"
+# Input: discovery.yaml + best-practices (copywriting, researching, review, image-design,
+# instagram-feed, instagram-reels, instagram-stories) + pesquisa web sobre marketing de
+# arquitetura/construção no Instagram para geração de leads de médio-alto padrão.
+
+squad:
+  code: "instagram-content"
+  name: "Conteúdo Instagram — César Couto Arquitetura"
+  description: "Squad que pesquisa pautas, gera ângulos, cria e revisa conteúdo educativo para Feed, Reels e Stories, com checkpoints de aprovação do usuário em cada decisão."
+
+agents:
+  - id: "pesquisador-tendencias"
+    name: "Bianca Bússola"
+    title: "Pesquisadora de Pauta e Tendências"
+    icon: "🧭"
+    execution: "subagent"
+    role_summary: "Pesquisa tendências, dúvidas frequentes e ângulos editoriais sobre o tema escolhido pelo usuário, dentro do nicho de arquitetura/construção e financiamento imobiliário."
+    skills: ["web_search", "web_fetch"]
+    tasks:
+      - name: "pesquisar-tendencias-e-angulos"
+        file: "tasks/pesquisar-tendencias-e-angulos.md"
+        description: "Pesquisa o tema focal e devolve um brief com achados + 3 a 5 ângulos editoriais distintos sobre o mesmo tema."
+
+  - id: "criador-feed"
+    name: "Camila Carrossel"
+    title: "Criadora de Conteúdo — Instagram Feed"
+    icon: "🖼️"
+    execution: "subagent"
+    role_summary: "Escreve carrosséis/posts de Feed a partir do ângulo escolhido, seguindo o framework de copywriting e as regras de carrossel do Instagram."
+    skills: []
+    tasks:
+      - name: "criar-post-feed"
+        file: "tasks/criar-post-feed.md"
+        description: "Produz o carrossel completo (slides + legenda + hashtags) no ângulo aprovado."
+
+  - id: "criador-reels"
+    name: "Rafael Roteiro"
+    title: "Criador de Conteúdo — Instagram Reels"
+    icon: "🎬"
+    execution: "subagent"
+    role_summary: "Escreve roteiros de Reels curtos e diretos a partir do ângulo escolhido, otimizados para retenção e alcance não-seguidor."
+    skills: []
+    tasks:
+      - name: "criar-roteiro-reels"
+        file: "tasks/criar-roteiro-reels.md"
+        description: "Produz o roteiro completo do Reels (gancho, roteiro, legenda, hashtags, direção de áudio)."
+
+  - id: "criador-stories"
+    name: "Sofia Sequência"
+    title: "Criadora de Conteúdo — Instagram Stories"
+    icon: "✨"
+    execution: "subagent"
+    role_summary: "Escreve sequências curtas de Stories a partir do ângulo escolhido, com elemento interativo para engajar seguidores."
+    skills: []
+    tasks:
+      - name: "criar-sequencia-stories"
+        file: "tasks/criar-sequencia-stories.md"
+        description: "Produz a sequência de 3-7 frames de Stories com elemento interativo e CTA."
+
+  - id: "designer-visual"
+    name: "Diana Diagramação"
+    title: "Designer Visual"
+    icon: "🎨"
+    execution: "subagent"
+    role_summary: "Transforma o carrossel aprovado em slides HTML autocontidos seguindo um design system consistente com a marca, prontos para renderização."
+    skills: ["image-creator", "template-designer"]
+    tasks:
+      - name: "criar-slides-carrossel"
+        file: "tasks/criar-slides-carrossel.md"
+        description: "Define o design system e gera um arquivo HTML por slide do carrossel aprovado."
+
+  - id: "revisor-qualidade"
+    name: "Vinícius Vistoria"
+    title: "Revisor de Qualidade"
+    icon: "🔍"
+    execution: "subagent"
+    role_summary: "Avalia os três formatos de conteúdo e os slides visuais contra os critérios de qualidade do squad, com veredito estruturado."
+    skills: []
+    tasks:
+      - name: "revisar-conteudo"
+        file: "tasks/revisar-conteudo.md"
+        description: "Pontua cada entregável, aponta correções obrigatórias e produz o veredito final (APROVADO/REJEITADO)."
+
+pipeline:
+  - step: 1
+    name: "checkpoint-foco-pesquisa"
+    type: "checkpoint"
+    output_file: "squads/instagram-content/output/research-focus.md"
+  - step: 2
+    name: "pesquisa-tendencias"
+    type: "agent"
+    agent: "pesquisador-tendencias"
+    execution: "subagent"
+    input_file: "squads/instagram-content/output/research-focus.md"
+    output_file: "squads/instagram-content/output/research-brief.md"
+    model_tier: "powerful"
+  - step: 3
+    name: "checkpoint-selecao-angulo"
+    type: "checkpoint"
+    output_file: "squads/instagram-content/output/selected-angle.md"
+  - step: 4
+    name: "criacao-feed"
+    type: "agent"
+    agent: "criador-feed"
+    execution: "subagent"
+    format: "instagram-feed"
+    input_file: "squads/instagram-content/output/selected-angle.md"
+    output_file: "squads/instagram-content/output/feed-content.md"
+    model_tier: "powerful"
+  - step: 5
+    name: "criacao-reels"
+    type: "agent"
+    agent: "criador-reels"
+    execution: "subagent"
+    format: "instagram-reels"
+    input_file: "squads/instagram-content/output/selected-angle.md"
+    output_file: "squads/instagram-content/output/reels-script.md"
+    model_tier: "powerful"
+  - step: 6
+    name: "criacao-stories"
+    type: "agent"
+    agent: "criador-stories"
+    execution: "subagent"
+    format: "instagram-stories"
+    input_file: "squads/instagram-content/output/selected-angle.md"
+    output_file: "squads/instagram-content/output/stories-sequence.md"
+    model_tier: "powerful"
+  - step: 7
+    name: "checkpoint-aprovacao-conteudo"
+    type: "checkpoint"
+  - step: 8
+    name: "design-visual"
+    type: "agent"
+    agent: "designer-visual"
+    execution: "subagent"
+    input_file: "squads/instagram-content/output/feed-content.md"
+    output_file: "squads/instagram-content/output/design-manifest.md"
+    model_tier: "powerful"
+  - step: 9
+    name: "revisao-qualidade"
+    type: "agent"
+    agent: "revisor-qualidade"
+    execution: "subagent"
+    input_file: "squads/instagram-content/output/design-manifest.md"
+    output_file: "squads/instagram-content/output/review.md"
+    on_reject: 4
+    model_tier: "powerful"
+  - step: 10
+    name: "checkpoint-aprovacao-final"
+    type: "checkpoint"
+
+investigation:
+  enriched: false
+
+research_brief: |
+  Fontes consultadas na fase de design (não a pesquisa de pauta em si, que é feita
+  pelo agente Pesquisador a cada execução): passarodigital.com.br, vobi.com.br,
+  galilai.com.br, blog.archtrends.com e artigos do Sebrae sobre erros de marketing
+  digital no Instagram. Principais achados: conteúdo de bastidor de obra funciona
+  como prova social e reduz objeção de confiança em investimentos altos; branding
+  visual consistente é obrigatório para público de alto padrão; erros mais comuns
+  são falta de planejamento editorial, hashtag spam e perfil desorganizado (bio/
+  destaques). Ver `pipeline/data/research-brief.md` para a versão completa.
+
+skills_installed:
+  - "web_search"
+  - "web_fetch"
+  - "image-creator"
+  - "template-designer"
+
+formats_selected:
+  - "instagram-feed"
+  - "instagram-reels"
+  - "instagram-stories"
+
+best_practices_consulted:
+  - "copywriting.md"
+  - "researching.md"
+  - "review.md"
+  - "image-design.md"
+  - "instagram-feed.md"
+  - "instagram-reels.md"
+  - "instagram-stories.md"
+
+template_selection: skipped

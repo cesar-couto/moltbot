@@ -1,0 +1,70 @@
+squad: instagram-content
+name: "Pipeline de Conteúdo Instagram"
+
+steps:
+  - step: 1
+    file: steps/step-01-checkpoint-foco-pesquisa.md
+    name: checkpoint-foco-pesquisa
+    type: checkpoint
+
+  - step: 2
+    file: steps/step-02-pesquisa-tendencias.md
+    name: pesquisa-tendencias
+    type: agent
+    agent: pesquisador-tendencias
+
+  - step: 3
+    file: steps/step-03-checkpoint-selecao-angulo.md
+    name: checkpoint-selecao-angulo
+    type: checkpoint
+
+  - step: 4
+    file: steps/step-04-criacao-feed.md
+    name: criacao-feed
+    type: agent
+    agent: criador-feed
+
+  - step: 5
+    file: steps/step-05-criacao-reels.md
+    name: criacao-reels
+    type: agent
+    agent: criador-reels
+
+  - step: 6
+    file: steps/step-06-criacao-stories.md
+    name: criacao-stories
+    type: agent
+    agent: criador-stories
+
+  - step: 7
+    file: steps/step-07-checkpoint-aprovacao-conteudo.md
+    name: checkpoint-aprovacao-conteudo
+    type: checkpoint
+
+  - step: 8
+    file: steps/step-08-design-visual.md
+    name: design-visual
+    type: agent
+    agent: designer-visual
+
+  - step: 9
+    file: steps/step-09-revisao-qualidade.md
+    name: revisao-qualidade
+    type: agent
+    agent: revisor-qualidade
+    on_reject: 4
+
+  - step: 10
+    file: steps/step-10-checkpoint-aprovacao-final.md
+    name: checkpoint-aprovacao-final
+    type: checkpoint
+
+checkpoints:
+  - step: 1
+    name: checkpoint-foco-pesquisa
+  - step: 3
+    name: checkpoint-selecao-angulo
+  - step: 7
+    name: checkpoint-aprovacao-conteudo
+  - step: 10
+    name: checkpoint-aprovacao-final
