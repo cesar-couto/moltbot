@@ -1,0 +1,26 @@
+# Dependências (o .gitignore raiz do repo já ignora node_modules, mantido aqui por clareza)
+node_modules/
+dashboard/node_modules/
+dashboard/dist/
+dashboard/test-results/
+
+# Segredos locais
+.env
+
+# Sessão de navegador persistente do Opensquad (login em redes sociais, dado privado do usuário)
+_opensquad/_browser_profile/
+
+# Logs de execução locais do CLI do Opensquad
+_opensquad/logs/*.log
+
+# Investigações Sherlock geradas em runtime (mantém apenas o marcador de diretório)
+_opensquad/_investigations/*
+!_opensquad/_investigations/.gitkeep
+
+# Saída gerada por execuções do squad (mantém apenas o marcador de diretório)
+squads/*/output/*
+!squads/*/output/.gitkeep
+
+# Estado de execução do dashboard (efêmero por design: o Pipeline Runner o apaga
+# ao final de cada rodada, ver "Post-Completion Cleanup" em runner.pipeline.md)
+squads/*/state.json

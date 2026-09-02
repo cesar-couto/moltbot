@@ -1,0 +1,23 @@
+code: instagram-content
+name: "Conteúdo Instagram — César Couto Arquitetura"
+description: >
+  Pesquisa pautas e ângulos sobre construção via financiamento imobiliário e
+  arquitetura residencial, produz conteúdo educativo para Feed, Reels e Stories,
+  gera os slides visuais do carrossel e revisa tudo antes da aprovação final.
+  Pausa em checkpoints para o usuário decidir: foco da pesquisa, ângulo escolhido,
+  aprovação do conteúdo e aprovação final.
+icon: "📱"
+
+skills:
+  - web_search
+  - web_fetch
+  - image-creator
+  - template-designer
+
+data:
+  - pipeline/data/research-brief.md
+  - pipeline/data/domain-framework.md
+  - pipeline/data/quality-criteria.md
+  - pipeline/data/output-examples.md
+  - pipeline/data/anti-patterns.md
+  - pipeline/data/tone-of-voice.md

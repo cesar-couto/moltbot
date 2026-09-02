@@ -1,0 +1,7 @@
+id,name,title,icon,path
+pesquisador-tendencias,Bianca Bússola,Pesquisadora de Pauta e Tendências,🧭,./agents/pesquisador-tendencias.agent.md
+criador-feed,Camila Carrossel,Criadora de Conteúdo — Instagram Feed,🖼️,./agents/criador-feed.agent.md
+criador-reels,Rafael Roteiro,Criador de Conteúdo — Instagram Reels,🎬,./agents/criador-reels.agent.md
+criador-stories,Sofia Sequência,Criadora de Conteúdo — Instagram Stories,✨,./agents/criador-stories.agent.md
+designer-visual,Diana Diagramação,Designer Visual,🎨,./agents/designer-visual.agent.md
+revisor-qualidade,Vinícius Vistoria,Revisor de Qualidade,🔍,./agents/revisor-qualidade.agent.md
